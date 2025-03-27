@@ -4,7 +4,6 @@ import com.codeborne.selenide.SelenideElement;
 import elements.Button;
 import elements.Input;
 import object.Project;
-
 import static com.codeborne.selenide.Selenide.$x;
 
 public class NewProjectModalPage extends BasePage{

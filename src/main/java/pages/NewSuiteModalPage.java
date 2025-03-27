@@ -2,10 +2,7 @@ package pages;
 
 import com.codeborne.selenide.SelenideElement;
 import elements.Button;
-import elements.Input;
-import object.Project;
 import object.Suite;
-
 import static com.codeborne.selenide.Selenide.$x;
 
 public class NewSuiteModalPage extends BasePage{

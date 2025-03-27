@@ -2,7 +2,6 @@ package tests;
 
 import com.codeborne.selenide.SelenideElement;
 import object.Project;
-import object.Suite;
 import object.TestCase;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -14,7 +13,6 @@ public class TestCaseTest extends BaseTest{
     public static final SelenideElement CREATE_TEST_CASE_BUTTON = $x("//*[contains(text(), 'New test')]");
     public static final SelenideElement TEST_CASE_TITLE = $x("//*[@id='title']");
     public static final SelenideElement SAVE_TEST_CASE_BUTTON = $x("//*[@id='save-case']");
-
 
     @Test
     public void createTestCaseTest() {

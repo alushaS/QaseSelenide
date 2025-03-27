@@ -7,19 +7,17 @@ import object.Suite;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import pages.NewProjectModalPage;
 import pages.NewSuiteModalPage;
 import pages.ProjectPage;
 import pages.ProjectsListPage;
 import steps.LoginSteps;
+import steps.SuiteSteps;
 import utils.PropertyReader;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static com.codeborne.selenide.WebDriverRunner.setWebDriver;
 
 public class BaseTest {
@@ -32,6 +30,7 @@ public class BaseTest {
     protected Button button;
     protected NewSuiteModalPage newSuiteModalPage;
     protected Suite suite;
+    SuiteSteps suiteSteps;
     public static String USER = PropertyReader.getProperty("user");
     public static String PASSWORD = PropertyReader.getProperty("password");
     public static String LOGIN_URL = PropertyReader.getProperty("loginUrl");
@@ -46,6 +45,7 @@ public class BaseTest {
         button = new Button();
         newSuiteModalPage = new NewSuiteModalPage();
         suite = new Suite();
+        suiteSteps = new SuiteSteps();
     }
 
     @BeforeMethod

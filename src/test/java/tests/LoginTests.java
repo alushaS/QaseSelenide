@@ -1,8 +1,6 @@
 package tests;
 
-
 import org.testng.annotations.Test;
-import steps.BaseSteps;
 
 public class LoginTests extends BaseTest {
 

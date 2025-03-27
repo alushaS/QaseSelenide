@@ -1,20 +1,12 @@
 package tests;
 
-import com.codeborne.selenide.SelenideElement;
-import elements.Button;
 import object.Project;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import static com.codeborne.selenide.Selenide.$x;
+
+import static pages.ProjectsListPage.*;
 
 public class ProjectTest extends BaseTest {
-
-    public static final SelenideElement CREATE_NEW_PROJECT = $x("//*[text()='Create new project']");
-    public static final SelenideElement PROJECT_REMOVE_BUTTON = $x("//*[@data-testid='remove']");
-    public static final SelenideElement PROJECT_CONTEXT_MENU_BUTTON = $x("//table//a[contains(text(), 'Project1')]//ancestor::tbody//span[@class='qc0jO1']");
-    public static final SelenideElement DELETE_PROJECT_BUTTON = $x("//span[contains(text(), 'Delete project')]");
-    public static final SelenideElement NO_PROJECTS_XPATH = $x("//*[@class = 'wf6Aof']");
-
 
     @Test
     public void createProjectTest() {

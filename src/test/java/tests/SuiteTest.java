@@ -1,21 +1,14 @@
 package tests;
 
-import com.codeborne.selenide.SelenideElement;
 import object.Project;
 import object.Suite;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import static com.codeborne.selenide.Selenide.$x;
+import static pages.ProjectPage.*;
 
 public class SuiteTest extends BaseTest{
-
-    public static final SelenideElement ADD_SUITE_BUTTON = $x("//*[@id = 'create-suite-button']");
-    public static final SelenideElement CREATE_SUITE_OR_CASE_BUTTON = $x("//*[@aria-label = 'Create suite or case']");
-    public static final SelenideElement CREATE_SUITE_BUTTON = $x("//*[contains(text(), 'Create suite')]");
-    public static final SelenideElement DELETE_SUITE_BUTTON = $x("//*[@aria-label = 'Delete suite']");
-    public static final SelenideElement DELETE_SUITE_POPUP_BUTTON = $x("//*[@type = 'submit']");
-
 
     @Test
     public void createSuiteTest() {
@@ -38,8 +31,7 @@ public class SuiteTest extends BaseTest{
         project.setName("Project1");
         loginSteps.login(USER, PASSWORD, LOGIN_URL);
         projectsListPage.openProjectPage(project.getName());
-        button.click(CREATE_SUITE_OR_CASE_BUTTON);
-        button.click(CREATE_SUITE_BUTTON);
+        suiteSteps.openSuiteCreationPopup(projectPage, project);
         newSuiteModalPage.fillSuiteCreationPopup(suite);
         Assert.assertEquals($x("//h3[contains(text(), 'Suite_example_plus_button')]").getText(), suite.getSuiteName());
     }
@@ -52,8 +44,7 @@ public class SuiteTest extends BaseTest{
         project.setName("Project1");
         loginSteps.login(USER, PASSWORD, LOGIN_URL);
         projectsListPage.openProjectPage(project.getName());
-        button.click(DELETE_SUITE_BUTTON);
-        button.click(DELETE_SUITE_POPUP_BUTTON);
+        suiteSteps.deleteSuiteStep(projectPage, project);
         Assert.assertEquals($x("//*[contains(text(), 'Looks like you don’t have any suites and cases yet.')]").getText(), "Looks like you don’t have any suites and cases yet.");
     }
 }
