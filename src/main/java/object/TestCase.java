@@ -11,4 +11,6 @@ public class TestCase {
 
     String title;
     String description;
+    String precondition;
+    String postcondition;
 }

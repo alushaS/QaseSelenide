@@ -5,9 +5,6 @@ import object.Suite;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import static com.codeborne.selenide.Selenide.$x;
-import static pages.ProjectPage.*;
-
 public class SuiteTest extends BaseTest{
 
     @Test
@@ -17,10 +14,9 @@ public class SuiteTest extends BaseTest{
         suite.setSuiteName("Suite_example_test");
         project.setName("Project1");
         loginSteps.login(USER, PASSWORD, LOGIN_URL);
-        projectsListPage.openProjectPage(project.getName());
-        button.click(ADD_SUITE_BUTTON);
-        newSuiteModalPage.fillSuiteCreationPopup(suite);
-        Assert.assertEquals($x("//h3[contains(text(), 'Suite_example_test')]").getText(), suite.getSuiteName());
+        projectSteps.openProjectStep(project);
+        suiteSteps.addSuiteStep(suite);
+        Assert.assertEquals(projectPage.getExistSuiteName(suite.getSuiteName()), suite.getSuiteName());
     }
 
     @Test
@@ -30,10 +26,9 @@ public class SuiteTest extends BaseTest{
         suite.setSuiteName("Suite_example_plus_button");
         project.setName("Project1");
         loginSteps.login(USER, PASSWORD, LOGIN_URL);
-        projectsListPage.openProjectPage(project.getName());
-        suiteSteps.openSuiteCreationPopup(projectPage, project);
-        newSuiteModalPage.fillSuiteCreationPopup(suite);
-        Assert.assertEquals($x("//h3[contains(text(), 'Suite_example_plus_button')]").getText(), suite.getSuiteName());
+        projectSteps.openProjectStep(project);
+        suiteSteps.createSuiteStep(suite, project);
+        Assert.assertEquals(projectPage.getExistSuiteNameCreatedWithPlusButton(suite.getSuiteName()), suite.getSuiteName());
     }
 
     @Test
@@ -45,7 +40,7 @@ public class SuiteTest extends BaseTest{
         loginSteps.login(USER, PASSWORD, LOGIN_URL);
         projectsListPage.openProjectPage(project.getName());
         suiteSteps.deleteSuiteStep(projectPage, project);
-        Assert.assertEquals($x("//*[contains(text(), 'Looks like you don’t have any suites and cases yet.')]").getText(), "Looks like you don’t have any suites and cases yet.");
+        Assert.assertEquals(projectPage.getExistSuiteAfterDeletion(), "Looks like you don’t have any suites and cases yet.");
     }
 }
 

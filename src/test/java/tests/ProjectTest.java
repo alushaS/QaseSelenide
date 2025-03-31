@@ -15,9 +15,8 @@ public class ProjectTest extends BaseTest {
         project.setProjectCode("PR1");
         project.setDescription("Description of the project");
         loginSteps.login(USER, PASSWORD, LOGIN_URL);
-        button.click(CREATE_NEW_PROJECT);
-        newProjectModalPage.createNewProject(project);
-        projectsListPage.openProjectListPage();
+        projectSteps.createNewProjectSteps(project);
+        projectSteps.openProjectListStep();
         Assert.assertEquals(projectsListPage.getExistProjectName(project.getName()), project.getName());
     }
 
@@ -28,9 +27,7 @@ public class ProjectTest extends BaseTest {
         project.setProjectCode("PR1");
         project.setDescription("Description of the project");
         loginSteps.login(USER, PASSWORD, LOGIN_URL);
-        button.click(PROJECT_CONTEXT_MENU_BUTTON);
-        button.click(PROJECT_REMOVE_BUTTON);
-        button.click(DELETE_PROJECT_BUTTON);
+        projectSteps.removeProject();
         Assert.assertEquals(NO_PROJECTS_XPATH.getText(), "Looks like you don’t have any projects yet.");
     }
 }

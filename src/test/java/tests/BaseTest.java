@@ -8,12 +8,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.BeforeMethod;
-import pages.NewProjectModalPage;
-import pages.NewSuiteModalPage;
-import pages.ProjectPage;
-import pages.ProjectsListPage;
+import pages.*;
 import steps.LoginSteps;
+import steps.ProjectSteps;
 import steps.SuiteSteps;
+import steps.TestCaseSteps;
 import utils.PropertyReader;
 
 import java.util.HashMap;
@@ -30,7 +29,10 @@ public class BaseTest {
     protected Button button;
     protected NewSuiteModalPage newSuiteModalPage;
     protected Suite suite;
-    SuiteSteps suiteSteps;
+    protected SuiteSteps suiteSteps;
+    protected ProjectSteps projectSteps;
+    protected TestCaseCreationPage testCaseCreationPage;
+    protected TestCaseSteps testCaseSteps;
     public static String USER = PropertyReader.getProperty("user");
     public static String PASSWORD = PropertyReader.getProperty("password");
     public static String LOGIN_URL = PropertyReader.getProperty("loginUrl");
@@ -46,6 +48,9 @@ public class BaseTest {
         newSuiteModalPage = new NewSuiteModalPage();
         suite = new Suite();
         suiteSteps = new SuiteSteps();
+        projectSteps = new ProjectSteps();
+        testCaseCreationPage = new TestCaseCreationPage();
+        testCaseSteps = new TestCaseSteps();
     }
 
     @BeforeMethod
